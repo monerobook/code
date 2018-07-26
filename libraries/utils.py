@@ -21,7 +21,7 @@ def sc_reduce32(input):
     ## convert hex string input to integer
     int = hex2int(input)
     ## reduce mod l
-    modulo = int % ed25519.l
+    modulo = int % (2**252 + 27742317777372353535851937790883648493)
     ## convert back to hex string for return value
     return int2hex(modulo)
 
