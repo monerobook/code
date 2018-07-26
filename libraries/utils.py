@@ -21,7 +21,7 @@ def sc_reduce32(input):
     ## convert hex string input to integer
     int = hex2int(input)
     ## reduce mod l
-    modulo = int % ed25519.l
+    modulo = int % (2**252 + 27742317777372353535851937790883648493)
     ## convert back to hex string for return value
     return int2hex(modulo)
 
@@ -48,3 +48,8 @@ def derivation_to_scalar(derivation, index):
     ## concatenate index to derivation
     data = derivation + index
     return hash_to_scalar(data)
+
+## Alias for scalarmultbase
+def publickey_to_privatekey(privateKey):
+    point = ed25519.scalarmultbase(hex2int(privateKey))
+    return hexlify(ed25519.encodepoint(point))
