@@ -48,3 +48,8 @@ def derivation_to_scalar(derivation, index):
     ## concatenate index to derivation
     data = derivation + index
     return hash_to_scalar(data)
+
+## Alias for scalarmultbase
+def publickey_to_privatekey(privateKey):
+    point = ed25519.scalarmultbase(hex2int(privateKey))
+    return hexlify(ed25519.encodepoint(point))
