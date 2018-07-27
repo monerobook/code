@@ -28,4 +28,13 @@ def generate_random_address():
     ## checksum is the first 4 bytes (8 hex characters) of the hash of the previous data
     checksum = hash[0:8]
     address = base58.encode(data + checksum)
+    
+    ## Priting the keys
+    
+    print("Secret_spend_key : " + secret_spend_key)
+    print("Secret_view_key : " + secret_view_key)
+    print("Public_spend_key : " + public_spend_key)
+    print("Public_view_key : " + public_view_key)
+    
+    ## Returning address generated
     return address
