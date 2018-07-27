@@ -21,7 +21,9 @@ def generate_random_address():
 
     ## the network byte, public spend key, and public view key are all concatenated together
     ## 0x12 is the Monero mainnet network byte
-    data = "12" + public_spend_key + public_view_key
+    network_byte = "12"
+    ## Concatenate the three strings
+    data = network_byte + public_spend_key + public_view_key
     hash = utils.keccak_256(data)
     ## checksum is the first 4 bytes (8 hex characters) of the hash of the previous data
     checksum = hash[0:8]
