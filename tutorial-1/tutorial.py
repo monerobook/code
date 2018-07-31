@@ -10,7 +10,7 @@ url = "http://localhost:18082/json_rpc"
 
 # JSON headers . Required.
 
-headers = {"content-type”: “application/json”}
+headers = {"content-type": "application/json"}
 
 # RPC input . Adding method name , at the moment we do not need variables.
 
@@ -20,7 +20,7 @@ rpc_fields = {
 
 # Adding the JSON RPC version and id. Id is a int variable which should be incrementated each request. First request is 0 , second is one ...
 
-rpc_fields.update({"jsonrpc": "2.0", "id”: "0"})
+rpc_fields.update({"jsonrpc": "2.0", "id": "0"})
 
 # Execute the rpc request
 
