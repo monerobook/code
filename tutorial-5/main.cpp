@@ -22,7 +22,7 @@ T get_key_from_hash(crypto::hash & in_hash){
 }
 
 int main(){
-  // Put here your private spendable key!
+  	// Put here your private spendable key!
 	std::string str_spend_key = "";
 	
 	crypto::public_key public_spend_key;
@@ -33,8 +33,6 @@ int main(){
 	std::cout << "Public spend key : "  << public_spend_key  << std::endl;
 	
 	crypto::hash hash_of_private_spend_key;
-	//keccak_hash(private_spend_key, hash_of_private_spend_key);
-	
 	
 	 keccak((uint8_t *)&str_spend_key, sizeof(hash_of_private_spend_key), (uint8_t *)&str_spend_key, sizeof(str_spend_key));
 
@@ -48,7 +46,7 @@ int main(){
   
 
 	cryptonote::account_public_address address {public_spend_key, public_view_key};
-	std::cout << "Monero Address:" << address_n << std::endl;
+	std::cout << "Monero Address:" << address << std::endl;
 
 	return 0;
 }
