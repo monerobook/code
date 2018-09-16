@@ -1,6 +1,5 @@
 // main.cpp file for Tutorial 5 - Mastering Monero
 
-#include "cryptonote_core/tx_pool.h"
 #include "cryptonote_core/blockchain.h"
 
 #include "blockchain_db/lmdb/db_lmdb.h"
@@ -11,7 +10,7 @@
 
 #include "crypto/crypto-ops.h"
 #include "crypto/keccak.h"
-
+#include "crypto/hash.h"
 // Converts crypto::hash into crypto::secret_key or crypto::public_key
 
 template <typename T>
@@ -31,6 +30,7 @@ int main(){
 	cryptonote::blobdata blob;
 	epee::string_tools::parse_hexstr_to_binbuff(str_spend_key, blob);
 	crypto::secret_key sc = reinterpret_cast<crypto::secret_key &>(blob);
+	std::cout << sc << std::endl;
 
 	// generate public key based on the private key
 	crypto::secret_key_to_public_key(sc, public_spend_key);
@@ -39,7 +39,7 @@ int main(){
 	
 	crypto::hash hash_of_private_spend_key;
 	
-	keccak((uint8_t *)&str_spend_key, sizeof(str_spend_key), (uint8_t *)&str_spend_key, sizeof(str_spend_key));
+	crypto::cn_fast_hash(&sc, sizeof(&sc), hash_of_private_spend_key);
 
 	crypto::secret_key private_view_key;
 	crypto::public_key public_view_key;
