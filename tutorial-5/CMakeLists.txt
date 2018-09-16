@@ -6,7 +6,7 @@ set(PROJECT_NAME
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_FLAGS
-        "${CMAKE_CXX_FLAGS} -std=c++11")
+        "${CMAKE_CXX_FLAGS} -std=c++11 -ldl")
 
 
 if (NOT MONERO_DIR)
@@ -60,12 +60,12 @@ include_directories(
 		${MONERO_SOURCE_DIR}/version
                 ${MONERO_SOURCE_DIR}/external/db_drivers/liblmdb)
 
-# add src/ subfolder
-# speficie source files
+
+# Specific source files
 set(SOURCE_FILES
         main.cpp)
 
-# make executable called xmreg01
+# Make Executable
 add_executable(${PROJECT_NAME}
         ${SOURCE_FILES})
 
@@ -73,11 +73,8 @@ add_executable(${PROJECT_NAME}
 set_target_properties(${PROJECT_NAME}
         PROPERTIES LINKER_LANGUAGE CXX)
 
-#target_link_libraries(myext
-#        PRIVATE fmt::fmt-header-only)
 
-set(LIBRARIES
-        
+set(LIBRARIES        
         wallet
         blockchain_db
         cryptonote_core
@@ -88,7 +85,6 @@ set(LIBRARIES
         blocks
         lmdb
         ringct
-        ringct_basic
         device
         common
         mnemonics
@@ -97,13 +93,12 @@ set(LIBRARIES
         device
         pcsclite
         sodium
-        fmt::fmt-header-only
 	pcsclite
         ${Boost_LIBRARIES}
         pthread
         unbound
-        curl
         crypto
+	ringct_basic
         ssl)
 
 if (Xmr_CHECKPOINTS_LIBRARIES)
@@ -113,7 +108,7 @@ endif()
 set(LIBS common;blocks;cryptonote_basic;cryptonote_core;
 		cryptonote_protocol;daemonizer;mnemonics;epee;lmdb;device;
                 blockchain_db;ringct;wallet;cncrypto;easylogging;version;
-                checkpoints)
+                checkpoints; ringct_basic; )
 
 foreach (l ${LIBS})
 
@@ -122,7 +117,7 @@ foreach (l ${LIBS})
 	find_library(Xmr_${L}_LIBRARY
 			NAMES ${l}
 			PATHS ${CMAKE_LIBRARY_PATH}
-			PATH_SUFFIXES "/src/${l}" "/src/" "/external/db_drivers/lib${l}" "/lib" "/src/crypto" "/contrib/epee/src" "/external/easylogging++/"
+			PATH_SUFFIXES "/src/${l}" "/src/ringct" "/src/" "/external/db_drivers/lib${l}" "/lib" "/src/crypto" "/contrib/epee/src" "/external/easylogging++/"
 			NO_DEFAULT_PATH
 			)
 
