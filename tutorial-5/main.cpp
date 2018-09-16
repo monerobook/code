@@ -23,8 +23,8 @@ T get_key_from_hash(crypto::hash & in_hash){
 
 int main(){
   	// Put here your private spendable key!
-	std::string str_spend_key = "";
-	
+	std::string str_spend_key = "20ae8eae3d02072e627d3f74141507aec6fe899154193d6d3ce5da6621b3060a";
+	cryptonote::network_type nettype = cryptonote::MAINNET;	
 	crypto::public_key public_spend_key;
 
 	// convert hex string to binary data
@@ -39,7 +39,7 @@ int main(){
 	
 	crypto::hash hash_of_private_spend_key;
 	
-	 keccak((uint8_t *)&str_spend_key, sizeof(hash_of_private_spend_key), (uint8_t *)&str_spend_key, sizeof(str_spend_key));
+	keccak((uint8_t *)&str_spend_key, sizeof(str_spend_key), (uint8_t *)&str_spend_key, sizeof(str_spend_key));
 
 	crypto::secret_key private_view_key;
 	crypto::public_key public_view_key;
@@ -51,7 +51,10 @@ int main(){
   
 
 	cryptonote::account_public_address address {public_spend_key, public_view_key};
-	std::cout << "Monero Address:" << address << std::endl;
+	std::string address_n ;
+
+	address_n = cryptonote::get_account_address_as_str(nettype, false, address); 
+	std::cout << "Monero Address:" << address_n << std::endl;
 
 	return 0;
 }
