@@ -29,7 +29,7 @@ int main(){
 	// convert hex string to binary data
 	cryptonote::blobdata blob;
 	epee::string_tools::parse_hexstr_to_binbuff(str_spend_key, blob);
-	crypto::secret_key sc = reinterpret_cast<const crypto::secret_key &>(blob.data());
+	crypto::secret_key sc = *reinterpret_cast<const crypto::secret_key *>(blob.data());
 	std::cout << "Public private key" << sc << std::endl;
 
 	// generate public key based on the private key
