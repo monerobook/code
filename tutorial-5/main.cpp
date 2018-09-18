@@ -29,8 +29,8 @@ int main(){
 	// convert hex string to binary data
 	cryptonote::blobdata blob;
 	epee::string_tools::parse_hexstr_to_binbuff(str_spend_key, blob);
-	crypto::secret_key sc = reinterpret_cast<crypto::secret_key &>(blob);
-	std::cout << sc << std::endl;
+	crypto::secret_key sc = reinterpret_cast<const crypto::secret_key &>(blob.data());
+	std::cout << "Public private key" << sc << std::endl;
 
 	// generate public key based on the private key
 	crypto::secret_key_to_public_key(sc, public_spend_key);
@@ -51,10 +51,10 @@ int main(){
   
 
 	cryptonote::account_public_address address {public_spend_key, public_view_key};
-	std::string address_n ;
+	std::string public_address;
 
-	address_n = cryptonote::get_account_address_as_str(nettype, false, address); 
-	std::cout << "Monero Address:" << address_n << std::endl;
+	public_address = cryptonote::get_account_address_as_str(nettype, false, address); 
+	std::cout << "Monero Address:" << public_address << std::endl;
 
 	return 0;
 }
