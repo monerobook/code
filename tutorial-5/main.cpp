@@ -15,7 +15,7 @@ T get_key_from_hash(crypto::hash & in_hash){
 
 int main(){
   	// Put here your private spendable key!
-	std::string str_spend_key = "20ae8eae3d02072e627d3f74141507aec6fe899154193d6d3ce5da6621b3060a";
+	std::string str_spend_key = "9227a05c665f684f5b8fef815cedd8a911b426c9fa07554c70daacf87757b302";
 	cryptonote::network_type nettype = cryptonote::MAINNET;	
 	crypto::public_key public_spend_key;
 
