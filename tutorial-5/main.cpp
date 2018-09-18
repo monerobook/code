@@ -23,7 +23,7 @@ int main(){
 	cryptonote::blobdata blob;
 	epee::string_tools::parse_hexstr_to_binbuff(str_spend_key, blob);
 	crypto::secret_key sc = *reinterpret_cast<const crypto::secret_key *>(blob.data());
-	std::cout << "Private spend key" << sc << std::endl;
+	std::cout << "Private spend key : " << sc << std::endl;
 
 	// Generate public spend key based on the private spend key (sc)
 	crypto::secret_key_to_public_key(sc, public_spend_key);
