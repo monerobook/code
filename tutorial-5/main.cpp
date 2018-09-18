@@ -4,8 +4,8 @@
 #include "common/base58.h"
 #include "crypto/crypto-ops.h"
 #include "crypto/hash.h"
-// Converts crypto::hash into crypto::secret_key or crypto::public_key
 
+// Converts crypto::hash into crypto::secret_key or crypto::public_key
 template <typename T>
 T get_key_from_hash(crypto::hash & in_hash){
 	T* key;
@@ -19,13 +19,13 @@ int main(){
 	cryptonote::network_type nettype = cryptonote::MAINNET;	
 	crypto::public_key public_spend_key;
 
-	// convert hex string to binary data
+	// Convert hex string to binary data
 	cryptonote::blobdata blob;
 	epee::string_tools::parse_hexstr_to_binbuff(str_spend_key, blob);
 	crypto::secret_key sc = *reinterpret_cast<const crypto::secret_key *>(blob.data());
 	std::cout << "Private spend key" << sc << std::endl;
 
-	// generate public key based on the private key
+	// Generate public spend key based on the private spend key (sc)
 	crypto::secret_key_to_public_key(sc, public_spend_key);
 	
 	std::cout << "Public spend key : "  << public_spend_key  << std::endl;
