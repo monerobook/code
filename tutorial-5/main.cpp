@@ -32,7 +32,7 @@ int main(){
 	
 	crypto::hash hash_of_private_spend_key;
 	
-	crypto::cn_fast_hash(&sc, sizeof(&sc), hash_of_private_spend_key);
+	crypto::cn_fast_hash(&sc, sizeof(hash_of_private_spend_key), hash_of_private_spend_key);
 
 	crypto::secret_key private_view_key;
 	crypto::public_key public_view_key;
