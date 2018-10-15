@@ -26,6 +26,10 @@ rpc_fields.update({"jsonrpc": "2.0", "id": "0"})
 
 response = requests.post(url,data=json.dumps(rpc_fields),headers=headers)
 
-# Print the response as JSON
+# Print the response as JSON (output version 1)
 
-print(json.dumps(response.json()))
+# print(json.dumps(response.json()))
+
+# Get the balance from response array and convert to a string (output version 2)
+balance = str(response.json().get(‘result’).get(‘balance’))
+print("Balance is " + balance + " XMR atomic units")
